@@ -163,6 +163,7 @@ apply a common operation on all non grouped columns
 If an aggregate function cannot be applied on a column eg.string, these nuisance columns will be silently ignored
 ```python
 .size() # count
+.nunique() # distinct count
 .sum() # supports prod, min, max, mean, median, first, last, std, var
 .head(5) # returns first 5 rows in each group by order as in dataframe. also supports tail(n), nlargest(n), nsmallest(n) 
 .nth([4,-1]) # returns 4th element from the top and 1st element from the bottom
