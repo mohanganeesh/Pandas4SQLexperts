@@ -65,12 +65,22 @@ c={'product':('apple','iphone','7 plus'),'features':['bluetooth','wifi']}
 ```python
 df.dtypes # gives the number of columns by various data types in the dataframe df
 ```
+###### Convert int column to float
+You can convert each series independently using series.astype function
+```python
+df['mycol'] = df.mycol.astype(float)
+```
+
 ###### Convert string/object to numeric 
 Pandas auto-detects data type. Usually numeric column with nulls or few string values are treated as object. This piece of code will replace them to 0 and convert to int
 ```python
 df.ID = pd.to_numeric(df.ID, errors='coerce')\ # coerce converts non numeric value columns to NaN
             .fillna(0)\ # replaces NaN to 0
             .astype(np.int64)  # type conversion
+```
+If there are no issues in your column, you can just run pd.to_numeric like shown below. It will convert to float if you have decimal values or int otherwise.
+```python
+	df['mycol'] = pd.to_numeric(df.mycol)
 ```
 ###### Other conversions
 ```python
