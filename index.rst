@@ -1,83 +1,6 @@
-Table of Contents
------------------
-
--  `DataFrame <#dataframe>`__
-
-   -  `Creating a DataFrame <#creating-a-dataframe>`__
-
--  `Datatypes & conversions <#datatypes--conversions>`__
-
-   -  `Get data types for each column in a data
-      frame <#get-data-types-for-each-column-in-a-data-frame>`__ \|
-      `Convert string/object to
-      numeric <#convert-stringobject-to-numeric>`__ \| `Other
-      conversions <#other-conversions>`__
-
--  `Select columns <#select-columns>`__
-
-   -  `Simple select <#simple-select>`__ \| `Select from multi-level
-      index using
-      tuples <#select-from-multi-level-index-using-tuples>`__ \|
-      `Creating multi-level index using
-      tuples <#creating-multi-level-index-using-tuples>`__ \|
-      `Programmatically select
-      columns <#programmatically-select-columns>`__ \| `Get distribution
-      of values in a column <#get-distribution-of-values-in-a-column>`__
-
--  `Filter rows <#filter-rows>`__
--  `Sort <#sort>`__
-
-   -  `Sort rows <#sort-rows>`__ \| `Sort columns <#sort-columns>`__
-
--  `Group by <#group-by>`__
-
-   -  `Group by example <#group-by-example>`__ \| `Aggregate
-      functions <#aggregate-functions>`__ \| `Transform
-      functions <#transform-functions>`__ \| `Group Filters
-      (SQL:having) <#group-filters-sqlhaving>`__ \| `Simple
-      Cumulative <#simple-cumulative>`__ \| `Expanding
-      Window <#expanding-window>`__ \| `Rolling
-      Window <#rolling-window>`__ \| `Lead/Lag <#leadlag>`__ \|
-      `Resample <#resample>`__
-
--  `Joins <#joins>`__
-
-   -  `Simple join <#simple-join>`__ \| `Concat
-      columns <#concat-columns>`__ \| `SQL like join <#sql-like-join>`__
-
--  `Formatting <#formatting>`__
-
-   -  `Numeric formating <#numeric-formating>`__ \| `Gradient
-      Background <#gradient-background>`__ \| `Bars <#bars>`__ \|
-      `Nesting multiple styles <#nesting-multiple-styles>`__
-
--  `Transform <#transform>`__
-
-   -  `Swap level & Axis <#swap-level--axis>`__ \| `Map <#map>`__ \|
-      `Apply <#apply>`__ \| `Flatten multi-level column
-      index <#flatten-multi-level-column-index>`__ \| `Pivot index
-      levels to column <#pivot-index-levels-to-column>`__ \| `Binning
-      based on value (cut) <#binning-based-on-value-cut>`__ \| `Binning
-      based on records (qcut) <#binning-based-on-records-qcut>`__
-
--  `Add/Remove rows & columns <#addremove-rows--columns>`__
-
-   -  `Add Rows <#add-rows>`__ \| `Add columns <#add-columns>`__ \|
-      `Remove rows <#remove-rows>`__ \| `Remove
-      columns <#remove-columns>`__ \| `Remove a level from multi-level
-      index <#remove-a-level-from-multi-level-index>`__
-
--  `Visualizations <#visualizations>`__
-
-   -  `Simple charts <#simple-charts>`__ \| `Histogram <#histogram>`__
-      \| `Boxplot for each group <#boxplot-for-each-group>`__ \|
-      `Scatter Matrix <#scatter-matrix>`__ \| `Bootstrap
-      Plot <#bootstrap-plot>`__
-
-Table of contents generated with markdown-toc
-
+=========
 DataFrame
----------
+=========
 
 You can think of DataFrame like a spreadsheet or SQL table. It is the
 most commonly used pandas object. Rows are referred to as axis 0 and
@@ -85,6 +8,7 @@ columns as axis 1 and each axis can have multiple levels (which is not
 common).
 
 Creating a DataFrame
+--------------------
                     
 
 Below example is to create sample DataFrame for examples on this page
@@ -104,7 +28,7 @@ Result: {F34356671} ## Datatypes & conversions Available datatypes:
 object (string, lists, dict, tuple and other complex objects), int64,
 float64, datetime64
 
-.. code:: python
+.. code-block:: python
 
    #string
    s='hello world!' #s[0:2] returns 'he', s[:-1] returns 'hello world'
@@ -122,7 +46,7 @@ float64, datetime64
    c={'product':('apple','iphone','7 plus'),'features':['bluetooth','wifi']}
 
 Get data types for each column in a data frame
-                                              
+----------------------------------------------
 
 .. code:: python
 
@@ -138,7 +62,7 @@ You can convert each series independently using series.astype function
    df['mycol'] = df.mycol.astype(float)
 
 Convert string/object to numeric
-                                
+----------------------------------------
 
 Pandas auto-detects data type. Usually numeric column with nulls or few
 string values are treated as object. This piece of code will replace
