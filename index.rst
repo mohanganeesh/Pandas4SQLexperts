@@ -24,7 +24,13 @@ Below example is to create sample DataFrame for examples on this page
                    columns=['name','type','health_index','cost_index'])
    df # prints the dataframe
 
-Result: {F34356671} ## Datatypes & conversions Available datatypes:
+Result: {F34356671} 
+
+## Datatypes & conversions 
+==========================
+
+Available datatypes:
+--------------------
 object (string, lists, dict, tuple and other complex objects), int64,
 float64, datetime64
 
@@ -83,6 +89,7 @@ int otherwise.
           df['mycol'] = pd.to_numeric(df.mycol)
 
 Other conversions
+-----------------
                  
 
 .. code:: python
@@ -92,9 +99,10 @@ Other conversions
    tuple(list) # converts list to tuple
 
 Select columns
---------------
+==============
 
 Simple select
+-----------------
              
 
 .. code:: python
@@ -111,15 +119,18 @@ Simple select
 
 more creative selects from a list
 `here <https://teamtreehouse.com/community/how-do-i-get-the-first-4-and-last-4-items-of-a-list>`__
-###### Select from multi-level index using tuples The tuples () can have
-2 or more levels
 
+Select from multi-level index using tuples 
+--------------------------------------------------------------------
+
+The tuples () can have 2 or more levels
 .. code:: python
 
    df[('label','count'),('label','mean')] # selects 2 columns (first under tree label->count and second label->mean)
 
+
 Creating multi-level index using tuples
-                                       
+-----------------------------------------
 
 The tuples () can have 2 or more levels
 
@@ -137,6 +148,7 @@ Alternatively, you can construct a list and convert to tuple using zip:
    pd.MultiIndex.from_tuples(tuples, names=['Parent', 'Child'])
 
 Programmatically select columns
+---------------------------------
                                
 
 .. code:: python
@@ -152,7 +164,7 @@ Get distribution of values in a column
    df.health_index.value_counts(normalize=True) # % distribution
 
 Filter rows
------------
+===========
 
 Filters internally use masking. You can just run the filter inside to
 see the mask data frame.
@@ -163,9 +175,10 @@ see the mask data frame.
    df.loc[~df.col1.isin(['apple','orange']),:]  # Returns all records where col1 is not 'apple' or 'orange'
 
 Sort
-----
+===========
 
 Sort rows
+---------
          
 
 .. code:: python
@@ -180,10 +193,10 @@ Sort columns
    df.sort_index(axis=1,level=0)  # Sorts columns by their names. axis 1 refers to columns. level 0 is the highest/default level
 
 Group by
---------
+========
 
 Group by example
-                
+-----------------
 
 groupby returns a dict object with group name and group data frame. This
 can be iterated thru manually or summarized using the functions below.
@@ -209,6 +222,7 @@ reset_index() to move the index to columns
    df.groupby(column_list).sum().reset_index()
 
 Aggregate functions
+-----------------
                    
 
 apply a common operation on all non grouped columns If an aggregate
@@ -236,6 +250,7 @@ apply various operations on each of the columns
    df['health_index_%oftotal']=df.health_index/df.health_index.sum()
 
 Transform functions
+-----------------
                    
 
 Transform function is similar to window aggregate functions on the
@@ -247,6 +262,7 @@ similar to original and preserves index
    df.groupby('type')['health_index'].transform('sum') # supports all aggregate functions like min, max, mean, std, var
 
 Group Filters (SQL:having)
+-----------------
                           
 
 .. code:: python
@@ -274,7 +290,7 @@ columns
    df['health_index_%oftotal']=df.health_index/df.health_index.sum()
 
 Simple Cumulative
-                 
+-----------------
 
 .. code:: python
 
@@ -290,7 +306,7 @@ Another way of achieving cumulative sum:
    df.cost_index.expanding().sum()
 
 Rolling Window
-              
+-----------------
 
 Similar to expanding, rolling window is also supported. Here is how to
 do a rolling sum of current record and previous (n-1) records
@@ -300,7 +316,7 @@ do a rolling sum of current record and previous (n-1) records
    df.cost_index.rolling(2).sum()
 
 Lead/Lag
-        
+-----------------
 
 .. code:: python
 
@@ -308,7 +324,7 @@ Lead/Lag
    df.cost_index.shift(1) # Get value from next record
 
 Resample
-        
+-----------------
 
 Used for time series grouping to create bins of equi-split time
 intervals
@@ -330,17 +346,17 @@ Note: No exact equivalent of
 update when you find it
 
 Joins
------
+======
 
 Simple join
-           
+-----------------
 
 .. code:: python
 
    train_X.join(train[y_col]) # joins on index. Returns dataframe with all columns from train_X & y_col from train
 
 Concat columns
-              
+-----------------
 
 concat on axis 1 is like join based on index
 
@@ -349,7 +365,7 @@ concat on axis 1 is like join based on index
    pd.concat([df1, df4], axis=1)
 
 SQL like join
-             
+-----------------
 
 SQL like join can be achieved with merge:
 
@@ -361,15 +377,17 @@ SQL like join can be achieved with merge:
             validate=None)
 
 Aggregate and join back to original dataset
+-----------------
 
 .. code:: python
 
    df.join(df.groupby('month')['A'].sum(), on='month', rsuffix='_r') # aggregates column A to month level and adds that to each of the records in df and is returned
 
 Formatting
-----------
+===========
 
 Numeric formating
+-----------------
                  
 
 .. code:: python
@@ -389,6 +407,7 @@ Numeric format guides:
    df.style.background_gradient(cmap=cm, subset=['B', 'C', 'D’]) # applies heatmap for columns B, C, D
 
 Bars
+-----
     
 
 .. code:: python
@@ -396,7 +415,7 @@ Bars
    df.style.bar(subset=['B']) # applies bars to column B
 
 Nesting multiple styles
-                       
+-----------------------
 
 .. code:: python
 
@@ -406,9 +425,10 @@ More styles:
 `here <https://pandas.pydata.org/pandas-docs/version/0.18.1/style.html>`__
 
 Transform
----------
+==========
 
 Swap level & Axis
+-----------------
                  
 
 .. code:: python
@@ -417,6 +437,7 @@ Swap level & Axis
    df.swapindex(0,1) # swaps first 2 index columns
 
 Map
+-----------------
    
 
 .. code:: python
@@ -424,7 +445,8 @@ Map
    df['housing'].map({'yes': 1, 'no': 0}) # changes values 'yes' to 1 and 'no' to 0
 
 Apply
-     
+-----------------
+
 
 using lambda functions for column transformations (entire column is
 passed as series to lambda function)
@@ -440,14 +462,14 @@ using lambda function across columns using axis=1
    df['Value'] = df.apply(lambda row: my_test(row['a'], row['c']), axis=1)
 
 Flatten multi-level column index
-                                
+-----------------
 
 .. code:: python
 
    df.columns=df.columns.get_level_values(0) 
 
 Pivot index levels to column
-                            
+-----------------
 
 This is like a pivot table operation. Creates N columns based on N
 unique values in the row index. If you need to pivot on a non-index
@@ -461,7 +483,7 @@ column, first add that to index using pd.set_index(col, append=True)
    df=df.stack()
 
 Binning based on value (cut)
-                            
+-----------------
 
 cut splits a continuous data into equi-distant bins. Bins are skewed
 when outliers in the data
@@ -475,7 +497,7 @@ when outliers in the data
    # Output: array([0, 0, 0, 0, 0, 1, 1, 3])
 
 Binning based on records (qcut)
-                               
+-----------------
 
 qcut splits any data into equi-sized bins
 
@@ -491,10 +513,10 @@ this can be used in a group by to get decile level metrics
    df.groupby(pd.qcut(df.col1,10, labels=False)).mean()
 
 Add/Remove rows & columns
--------------------------
+=========================
 
 Add Rows
-        
+-----------------
 
 Adding 1 row manually
 
@@ -510,7 +532,7 @@ will be created for non-matching columns. Missing columns will be NULLs
    df.append(new_df)
 
 Add columns
-           
+-----------------
 
 to add a column manually
 
@@ -531,15 +553,17 @@ to create a new data frame with additional column
    pd.concat([df,df.cost_index/2], axis=1) # this can also be used to create a dataframe from 2 or more series
 
 Remove rows
-           
+-----------------
 
 Drop using index
+-----------------
 
 .. code:: python
 
    df.drop([0,1]) # removes rows with index 0 & 1
 
 Remove columns
+-----------------
               
 
 drop using column names
@@ -549,7 +573,7 @@ drop using column names
    df.drop('cost_index', axis=1) 
 
 Remove a level from multi-level index
-                                     
+-----------------
 
 drop the highest level from multi-level column index
 
@@ -564,10 +588,10 @@ drop a level from multi-level row index
    pd.MultiIndex.droplevel(df,level=0)
 
 Visualizations
---------------
+==============
 
 Simple charts
-             
+-----------------
 
 .. code:: python
 
@@ -575,7 +599,7 @@ Simple charts
    df.plot(subplots=True, figsize=(6, 6), layout=(3, -1)) # Layout -1 is to infer the number of columns based on data
 
 Histogram
-         
+-----------------
 
 .. code:: python
 
@@ -583,7 +607,7 @@ Histogram
    df.hist(bins=100, figsize=(40,30))
 
 Boxplot for each group
-                      
+-----------------
 
 .. code:: python
 
@@ -592,13 +616,13 @@ Boxplot for each group
 
 Scatter Matrix
               
-
+-----------------
 .. code:: python
 
    scatter_matrix(df, alpha=0.2, figsize=(6, 6), diagonal='kde')
 
 Bootstrap Plot
-              
+-----------------
 
 .. code:: python
 
@@ -606,6 +630,7 @@ Bootstrap Plot
 
 More vizualizations
 `here <https://pandas.pydata.org/pandas-docs/stable/visualization.html>`__
+=====================
 
 Nesting them all Use  for continuity on next line
 
