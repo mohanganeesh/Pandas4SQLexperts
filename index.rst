@@ -26,7 +26,7 @@ Below example is to create sample DataFrame for examples on this page
 
 Result: {F34356671} 
 
-## Datatypes & conversions 
+Datatypes & conversions 
 ==========================
 
 Available datatypes:
@@ -399,7 +399,9 @@ Numeric formating
 
 Numeric format guides:
 `here <https://docs.python.org/3/library/string.html#format-specification-mini-language>`__
-###### Gradient Background
+
+Gradient Background
+------------------
 
 .. code:: python
 
